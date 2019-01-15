@@ -1,4 +1,4 @@
-# Solidity-
+# Solidity
 This is the note of solidity. By RuidongWang
 #solidity笔记
 [toc]
