@@ -1,5 +1,6 @@
 # Solidity
 This is the note of solidity. By RuidongWang
+学习网址: https://cryptozombies.io/zh/
 # solidity笔记
 [toc]
 ****
