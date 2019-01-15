@@ -1,6 +1,6 @@
 # Solidity
 This is the note of solidity. By RuidongWang
-#solidity笔记
+# solidity笔记
 [toc]
 ****
 
@@ -42,13 +42,13 @@ contract ZombieFactory {
 
 ```
 ***
-#数据类型
+# 数据类型
 **状态变量**是被永久地保存在合约中。也就是说它们被写入以太币区块链中. 想象成写入一个数据库。
 四则运算同一般语言；
 **乘方操作** `a = b ** c`；a的值为b的c次方
 ***
 **`uint`指的是`uint256`指的是256位无符号整型。**
-#数组
+# 数组
 Solidity 支持两种数组: **静态**数组和**动态**数组；
 ```
 Person[] people; // dynamic Array, we can keep adding to it
@@ -58,7 +58,7 @@ Person[] people; // dynamic Array, we can keep adding to it
 **公共数组`Person[] public people;`**其他合约可以从这个数组读取数据（但不能写入数据），这是一种有用的保存公共数据的模式。
 数组尾部加入新的元素`array.push()`
 ***
-#定义函数
+# 定义函数
 **函数定义语法**
 ```
 function eatHamburgers(string _name, uint _amount) {
@@ -72,7 +72,7 @@ function eatHamburgers(string _name, uint _amount) {
 eatHamburgers("vitalik", 100);
 ```
 ***
-#私有/公共函数
+# 私有/公共函数
 Solidity 定义的函数的属性默认为**公共**。 这就意味着任何一方 (或其它合约) 都可以调用你合约里的函数。
 ```
 uint[] numbers;
@@ -104,14 +104,14 @@ function _multiply(uint a, uint b) private pure returns (uint) {
 
 **注:**可能很难记住何时把函数标记为 pure/view。 幸运的是， Solidity 编辑器会给出提示，提醒你使用这些修饰符。
 ***
-#Keccak256 和 类型转换
+# Keccak256 和 类型转换
 **Keccak256**
 Ethereum 内部有一个散列函数keccak256，它用了SHA3版本。一个散列函数基本上就是把一个字符串转换为一个256位的16进制数字。字符串的一个微小变化会引起散列数据极大变化。
 `keccak256("aaaab");`
 **类型转换方法**
 例：`uint8(b)`
 ***
-#事件
+# 事件
 **事件**是合约和区块链通讯的一种机制。你的前端应用“监听”某些事件，并做出反应。
 ```
 // 这里建立事件
@@ -131,11 +131,11 @@ YourContract.IntegersAdded(function(error, result) {
 }
 ```
 ***
-#映射（Mapping）和地址（Address）
-##Addresses （地址）
+# 映射（Mapping）和地址（Address）
+## Addresses （地址）
 **地址属于特定用户（或智能合约）**
 
-##Mapping（映射）
+## Mapping（映射）
 **映射**是另一种在 Solidity 中存储有组织数据的方法。
 ```
 //对于金融应用程序，将用户的余额保存在一个 uint类型的变量中：
@@ -145,7 +145,7 @@ mapping (uint => string) userIdToName;
 ```
 映射本质上是存储和查找数据所用的键-值对。在第一个例子中，键是一个`address`，值是一个`uint`，在第二个例子中，键是一个`uint`，值是一个`string`。
 ***
-#Msg.sender
+# Msg.sender
 在 Solidity 中，有一些全局变量可以被所有函数调用。 其中一个就是`msg.sender`，它指的是当前调用者（或智能合约）的`address`。
 ```
 mapping (address => uint) favoriteNumber;
@@ -164,7 +164,7 @@ function whatIsMyNumber() public view returns (uint) {
 ```
 在这个小小的例子中，任何人都可以调用`setMyNumber`在我们的合约中存下一个`uint`并且与他们的地址相绑定。 然后，他们调用`whatIsMyNumber`就会返回他们存储的`uint`。
 ***
-#Require
+# Require
 `require`使得函数在执行过程中，当不满足某些条件时抛出错误，并停止执行：
 ```
 function sayHiToVitalik(string _name) public returns (string) {
@@ -181,7 +181,7 @@ function sayHiToVitalik(string _name) public returns (string) {
 因此，在调用一个函数之前，用 `require`验证前置条件是非常有必要的。
 (**注by Wang**：这就类似于在C语言中检查函数参数的条件是否满足。)
 ***
-#继承（is）
+# 继承（is）
 **合约`inheritance`(继承)**
 ```
 contract Doge {
@@ -200,7 +200,7 @@ contract BabyDoge is Doge {
 
 这可以用于逻辑继承（比如表达子类的时候，`Cat`是一种`Animal`）。 但也可以简单地将类似的逻辑组合到不同的合约中以组织代码。
 ***
-#引入（Import）
+# 引入（Import）
 （注by Wang：这就类似于C语言中的头文件导入，多文件模式）
 在 Solidity 中，当你有多个文件并且想把一个文件导入另一个文件时，可以使用`import`语句：
 ```
@@ -209,7 +209,7 @@ contract newContract is SomeOtherContract {
 }
 ```
 ***
-#Storage与Memory
+# Storage与Memory
 在Solidity 中，有两个地方可以存储变量 ——`storage`或`memory`。
 `Storage`变量是指永久存储在区块链中的变量。`Memory`变量则是临时的，当外部函数对某合约调用完成时，内存型变量即被移除。 你可以把它想象成存储在你电脑的硬盘或是RAM中数据的关系。
 
@@ -253,8 +253,8 @@ contract SandwichFactory {
 }
 ```
 ***
-#函数可见性
-##internal 和 external
+# 函数可见性
+## internal 和 external
 除`public`和`private`属性之外，Solidity 还使用了另外两个描述函数可见性的修饰词：`internal`（内部） 和`external`（外部）。
 
 `internal`和`private`类似，不过， 如果某个合约继承自其父合约，这个合约即可以访问父合约中定义的“内部”函数。(子合约可以)
@@ -282,7 +282,7 @@ contract BLT is Sandwich {
 ```
 
 ***
-#与其他合约的交互
+# 与其他合约的交互
 如果我们的合约需要和区块链上的其他的合约会话，则需先定义一个`interface`(接口)。
 先举一个简单的栗子。 假设在区块链上有这么一个合约：
 ```
@@ -318,7 +318,7 @@ contract NumberInterface {
 
 在我们的 app 代码中使用这个接口，合约就知道其他合约的函数是怎样的，应该如何调用，以及可期待什么类型的返回值。
 ***
-#使用接口
+# 使用接口
 继续前面`NumberInterface`的例子，我们既然将接口定义为：
 ```
 contract NumberInterface {
@@ -342,7 +342,7 @@ contract MyContract {
 ```
 通过这种方式，只要将您合约的可见性设置为`public`(公共)或`external`(外部)，它们就可以与以太坊区块链上的任何其他合约进行交互。
 ***
-#多返回值处理
+# 多返回值处理
 多返回值处理例子：
 ```
 function multipleReturns() internal returns(uint a, uint b, uint c) {
@@ -366,7 +366,7 @@ function getLastReturnValue() external {
 ```
 (**注by Wang:** 获取全部返回值时，使用()依次获取，获取部分返回值时，不需要的留空)
 ***
-#if 语句
+# if 语句
 `if`语句的语法在Solidity中，与在 JavaScript 中差不多：
 ```
 function eatBLT(string sandwich) public {
@@ -377,9 +377,9 @@ function eatBLT(string sandwich) public {
 }
 ```
 ***
-#第三课
+# 第三课
 ***
-#智能协议的永固性
+# 智能协议的永固性
 到现在为止，我们讲的 Solidity 和其他语言没有质的区别，它长得也很像 JavaScript.
 
 但是，在有几点以太坊上的 DApp 跟普通的应用程序有着天壤之别。
@@ -390,19 +390,19 @@ function eatBLT(string sandwich) public {
 
 但这恰好也是智能合约的一大优势。 代码说明一切。 如果你去读智能合约的代码，并验证它，你会发现， 一旦函数被定义下来，每一次的运行，程序都会严格遵照函数中原有的代码逻辑一丝不苟地执行，完全不用担心函数被人篡改而得到意外的结果。
 
-##外部依赖关系
+## 外部依赖关系
 在第2课中，我们将加密小猫（CryptoKitties）合约的地址硬编码到DApp中去了。有没有想过，如果加密小猫出了点问题，比方说，集体消失了会怎么样？ 虽然这种事情几乎不可能发生，但是，如果小猫没了，我们的 DApp 也会随之失效 -- 因为我们在 DApp 的代码中用“硬编码”的方式指定了加密小猫的地址，如果这个根据地址找不到小猫，我们的僵尸也就吃不到小猫了，而按照前面的描述，我们却没法修改合约去应付这个变化！
 
 因此，我们不能硬编码，而要采用“函数”，以便于 DApp 的关键部分可以以参数形式修改。
 
 比方说，我们不再一开始就把猎物地址给写入代码，而是写个函数 setKittyContractAddress, 运行时再设定猎物的地址，这样我们就可以随时去锁定新的猎物，也不用担心加密小猫集体消失了。
 ***
-#Ownable Contracts
+# Ownable Contracts
 我们确实是希望这个地址能够在合约中修改，但我可没说让每个人去改它呀。
 
 要对付这样的情况，通常的做法是指定合约的“所有权” - 就是说，给它指定一个主人、，只有主人对它享有特权。
 
-#OpenZeppelin库的Ownable 合约
+# OpenZeppelin库的Ownable 合约
 下面是一个`Ownable`合约的例子： 来自 OpenZeppelin Solidity 库的`Ownable`合约。 OpenZeppelin 是主打安保和社区审查的智能合约库，您可以在自己的 DApps中引用。等把这一课学完，您不要催我们发布下一课，最好利用这个时间把 OpenZeppelin 的网站看看，保管您会学到很多东西！
 
 把楼下这个合约读读通，是不是还有些没见过代码？别担心，我们随后会解释。
@@ -463,7 +463,7 @@ contract Ownable {
 
 既然我们想把`setKittyContractAddress`限制为`onlyOwner`，我们也要做同样的事情。
 ***
-#onlyOwner 函数修饰符
+# onlyOwner 函数修饰符
 函数修饰符看起来跟函数没什么不同，不过关键字`modifier`告诉编译器，这是个`modifier`(修饰符)，而不是个`function`(函数)。它不能像函数那样被直接调用，只能被添加到函数定义的末尾，用以改变函数的行为。
 
 咱们仔细读读 onlyOwner:
@@ -497,26 +497,26 @@ contract MyContract is Ownable {
 > 所以非常重要的是，部署在以太坊上的 DApp，并不能保证它真正做到去中心，你需要阅读并理解它的源代码，才能防止其中没有被部署者恶意植入后门；作为开发人员，如何做到既要给自己留下修复bug 的余地，又要尽量地放权给使用者，以便让他们放心你，从而愿意把数据放在你的 DApp 中，这确实需要个微妙的平衡。
 
 ***
-#Gas
+# Gas
 厉害！现在我们懂了如何在禁止第三方修改我们的合约的同时，留个后门给咱们自己去修改。
 
 让我们来看另一种使得 Solidity 编程语言与众不同的特征：
 
-##Gas - 驱动以太坊DApps的能源
+## Gas - 驱动以太坊DApps的能源
 在 Solidity 中，你的用户想要每次执行你的 DApp 都需要支付一定的**gas**，**gas**可以用**以太币**购买，因此，用户每次跑 DApp 都得**花费**以太币。
 
 一个 DApp 收取多少 gas 取决于**功能逻辑的复杂程度**。每个操作背后，都在计算完成这个操作所需要的计算资源，（比如，存储数据就比做个加法运算贵得多）， 一次操作所需要花费的 gas 等于这个操作背后的所有运算花销的总和。
 
 由于运行你的程序需要花费用户的真金白银，在以太坊中代码的编程语言，比其他任何编程语言都更强调优化。同样的功能，使用笨拙的代码开发的程序，比起经过**精巧优化**的代码来，运行花费更高，这显然会给成千上万的用户带来大量不必要的开销。
 
-##为什么要用 gas 来驱动？
+## 为什么要用 gas 来驱动？
 **以太坊就像一个巨大、缓慢、但非常安全的电脑。当你运行一个程序的时候，网络上的每一个节点都在进行相同的运算，以验证它的输出 —— 这就是所谓的“中心化”** 由于数以千计的节点同时在验证着每个功能的运行，这可以确保它的数据不会被被监控，或者被刻意修改。
 
 可能会有用户用无限循环堵塞网络，抑或用密集运算来占用大量的网络资源，为了防止这种事情的发生，以太坊的创建者为以太坊上的资源制定了价格，想要在以太坊上运算或者存储，你需要先付费。
 
 >注意：如果你使用**侧链**，倒是不一定需要付费，比如咱们在 Loom Network 上构建的 CryptoZombies 就免费。你不会想要在以太坊主网上玩儿“魔兽世界”吧？ - 所需要的 gas 可能会买到你破产。但是你可以找个算法理念不同的侧链来玩它。我们将在以后的课程中咱们会讨论到，什么样的 DApp 应该部署在太坊主链上，什么又最好放在侧链。
 
-##省 gas 的招数：结构封装 （Struct packing）
+## 省 gas 的招数：结构封装 （Struct packing）
 在第1课中，我们提到除了基本版的`uint`外，还有其他变种`uint：uint8，uint16，uint32`等。
 
 通常情况下我们不会考虑使用`uint`变种，因为无论如何定义`uint`的大小，Solidity 为它保留256位的存储空间。例如，使用`uint8`而不是`uint（uint256）`不会为你节省任何**gas**。
@@ -547,7 +547,7 @@ MiniMe mini = MiniMe(10, 20, 30);
 
 前者比后者需要的gas更少，因为前者把`uint32`放一起了。
 ***
-#时间单位
+# 时间单位
 Solidity 使用自己的本地时间单位。
 
 变量`now`将返回当前的unix时间戳（自1970年1月1日以来经过的秒数）。我写这句话时 unix 时间是 `1515527488`。
@@ -572,7 +572,7 @@ function fiveMinutesHavePassed() public view returns (bool) {
 }
 ```
 ***
-#将结构体作为参数传入
+# 将结构体作为参数传入
 由于结构体的存储指针可以以参数的方式传递给一个`private`或`internal`的函数，因此结构体可以在多个函数之间相互传递。
 
 遵循这样的语法：
@@ -583,7 +583,7 @@ function _doStuff(Zombie storage _zombie) internal {
 ```
 这样我们可以将某僵尸的引用直接传递给一个函数，而不用是通过参数传入僵尸ID后，函数再依据ID去查找。
 ***
-#公有函数的安全性
+# 公有函数的安全性
 现在来修改`feedAndMultiply`，实现冷却周期。
 
 回顾一下这个函数，前一课上我们将其可见性设置为`public`。你必须仔细地检查所有声明为`public`和 `external`的函数，一个个排除用户滥用它们的可能，谨防安全漏洞。请记住，如果这些函数没有类似 `onlyOwner`这样的函数修饰符，用户能利用各种可能的参数去调用它们。
@@ -592,7 +592,7 @@ function _doStuff(Zombie storage _zombie) internal {
 
 仔细观察，这个函数只需被`feedOnKitty()`调用，因此，想要防止漏洞，最简单的方法就是设其可见性为 `internal`。
 ***
-#带参数的函数修饰符
+# 带参数的函数修饰符
 之前我们已经读过一个简单的函数修饰符了：onlyOwner。函数修饰符也可以带参数。例如：
 ```
 // 存储用户年龄的映射
@@ -612,7 +612,7 @@ function driveCar(uint _userId) public olderThan(16, _userId) {
 ```
 看到了吧，`olderThan`修饰符可以像函数一样接收参数，是“宿主”函数`driveCar`把参数传递给它的修饰符的。
 ***
-#“view” 函数不花 “gas”
+# “view” 函数不花 “gas”
 当玩家从外部调用一个view函数，是不需要支付一分 gas 的。
 
 这是因为`view`函数不会真正改变区块链上的任何数据 - 它们只是读取。因此用`view`标记一个函数，意味着告诉 web3.js，运行这个函数只需要查询你的本地以太坊节点，而不需要在区块链上创建一个事务（事务需要运行在每个节点上，因此花费 gas）。
@@ -622,7 +622,7 @@ function driveCar(uint _userId) public olderThan(16, _userId) {
 >注意：如果一个 view 函数在另一个函数的内部被调用，而调用函数与 view 函数的不属于同一个合约，也会产生调用成本。这是因为如果主调函数在以太坊创建了一个事务，它仍然需要逐个节点去验证。所以标记为 view 的函数只有在外部调用时才是免费的。
 
 ***
-#存储非常昂贵
+# 存储非常昂贵
 Solidity 使用`storage`(存储)是相当昂贵的，”写入“操作尤其贵。
 
 这是因为，无论是写入还是更改一段数据， 这都将永久性地写入区块链。”永久性“啊！需要在全球数千个节点的硬盘上存入这些数据，随着区块链的增长，拷贝份数更多，存储量也就越大。这是需要成本的！
@@ -654,7 +654,7 @@ function getArray() external pure returns(uint[]) {
 >注意：内存数组 必须 用长度参数（在本例中为3）创建。目前不支持 `array.push()`之类的方法调整数组大小，在未来的版本可能会支持长度修改。
 
 ***
-#使用`for`循环
+# 使用`for`循环
 `for`循环的语法在 Solidity 和 JavaScript 中类似。
 
 来看一个创建偶数数组的例子：
@@ -678,9 +678,9 @@ function getEvens() pure external returns(uint[]) {
 ```
 这个函数将返回一个形为`[2,4,6,8,10]`的数组。
 ***
-#第四课
+# 第四课
 ***
-#可支付
+# 可支付
 截至目前，我们只接触到很少的**函数修饰符**。 要记住所有的东西很难，所以我们来个概览：
 
 我们有决定函数何时和被谁调用的可见性修饰符:`private`意味着它只能被合约内部调用；`internal`就像`private`但是也能被继承的合约调用；`external`只能从合约外部调用；最后`public`可以在任何地方调用，不管是内部还是外部。
@@ -695,7 +695,7 @@ function test() external view onlyOwner anotherModifier { /* ... */ }
 ```
 在这一章，我们来学习一个新的修饰符 payable.
 
-##`payable`修饰符
+## `payable`修饰符
 `payable`方法是让 Solidity 和以太坊变得如此酷的一部分 —— 它们是一种可以接收以太的特殊函数。
 
 先放一下。当你在调用一个普通网站服务器上的API函数的时候，你无法用你的函数传送美元——你也不能传送比特币。
@@ -704,7 +704,7 @@ function test() external view onlyOwner anotherModifier { /* ... */ }
 
 这就允许出现很多有趣的逻辑， 比如向一个合约要求支付一定的钱来运行一个函数。
 
-###来看个例子
+### 来看个例子
 ```
 contract OnlineStore {
   function buySomething() external payable {
@@ -728,7 +728,7 @@ OnlineStore.buySomething().send(from: web3.eth.defaultAccount,
 >注意： 如果一个函数没标记为`payable`， 而你尝试利用上面的方法发送以太，函数将拒绝你的事务。
 
 ***
-#提现
+# 提现
 在上一章，我们学习了如何向合约发送以太，那么在发送之后会发生什么呢？
 
 在你发送以太之后，它将被存储进以合约的以太坊账户中， 并冻结在哪里 —— 除非你添加一个函数来从合约中把以太提现。
@@ -754,8 +754,8 @@ msg.sender.transfer(msg.value - itemFee);
 
 有很多例子来展示什么让以太坊编程如此之酷 —— 你可以拥有一个不被任何人控制的去中心化市场。
 ***
-#随机数
-##用 keccak256 来制造随机数。
+# 随机数
+## 用 keccak256 来制造随机数。
 Solidity 中最好的随机数生成器是 keccak256 哈希函数.
 
 我们可以这样来生成一些随机数
@@ -770,7 +770,7 @@ uint random2 = uint(keccak256(now, msg.sender, randNonce)) % 100;
 
 然后利用`keccak`把输入的值转变为一个哈希值, 再将哈希值转换为`uint`, 然后利用 % 100 来取最后两位, 就生成了一个0到100之间随机数了。
 
-##这个方法很容易被不诚实的节点攻击(弊端)
+## 这个方法很容易被不诚实的节点攻击(弊端)
 在以太坊上, 当你在和一个合约上调用函数的时候, 你会把它广播给一个节点或者在网络上的 transaction 节点们。 网络上的节点将收集很多事务, 试着成为第一个解决计算密集型数学问题的人，作为“工作证明”，然后将“工作证明”(Proof of Work, PoW)和事务一起作为一个 block 发布在网络上。
 
 一旦一个节点解决了一个PoW, 其他节点就会停止尝试解决这个 PoW, 并验证其他节点的事务列表是有效的，然后接受这个节点转而尝试解决下一个节点。
@@ -781,7 +781,7 @@ uint random2 = uint(keccak256(now, msg.sender, randNonce)) % 100;
 
 如果我正运行一个节点，我可以 只对我自己的节点 发布一个事务，且不分享它。 我可以运行硬币翻转方法来偷窥我的输赢 — 如果我输了，我就不把这个事务包含进我要解决的下一个区块中去。我可以一直运行这个方法，直到我赢得了硬币翻转并解决了下一个区块，然后获利。
 
-##所以我们该如何在以太坊上安全地生成随机数呢
+## 所以我们该如何在以太坊上安全地生成随机数呢
 因为区块链的全部内容对所有参与者来说是透明的， 这就让这个问题变得很难，它的解决方法不在本课程讨论范围，你可以阅读 这个 [StackOverflow 上的讨论](https://ethereum.stackexchange.com/questions/191/how-can-i-securely-generate-a-random-number-in-my-smart-contract) 来获得一些主意。 一个方法是利用 oracle 来访问以太坊区块链之外的随机数函数。
 
 
@@ -791,10 +791,10 @@ uint random2 = uint(keccak256(now, msg.sender, randNonce)) % 100;
 
 因为在这个教程中，我们只是在编写一个简单的游戏来做演示，也没有真正的钱在里面，所以我们决定接受这个不足之处，使用这个简单的随机数生成函数。但是要谨记它是不安全的。
 ***
-#重构通用逻辑
+# 重构通用逻辑
 在出现大量代码复用的时候，创建`modifier`（自定义修饰符）将复用代码简化
 ***
-#第五课：ERC721 标准和加密收藏品
+# 第五课：ERC721 标准和加密收藏品
 ***
 # 以太坊上的代币
 让我们来聊聊**代币**。
@@ -807,7 +807,7 @@ uint random2 = uint(keccak256(now, msg.sender, randNonce)) % 100;
 
 所以基本上一个代币只是一个追踪谁拥有多少该代币的合约，和一些可以让那些用户将他们的代币转移到其他地址的函数。
 
-##它为什么重要呢？
+## 它为什么重要呢？
 由于所有 ERC20 代币共享具有相同名称的同一组函数，它们都可以以相同的方式进行交互。
 
 这意味着如果你构建的应用程序能够与一个 ERC20 代币进行交互，那么它就也能够与任何 ERC20 代币进行交互。 这样一来，将来你就可以轻松地将更多的代币添加到你的应用中，而无需进行自定义编码。 你可以简单地插入新的代币合约地址，然后哗啦，你的应用程序有另一个它可以使用的代币了。
@@ -816,7 +816,7 @@ uint random2 = uint(keccak256(now, msg.sender, randNonce)) % 100;
 
 交易所只需要实现这种转移逻辑一次，然后当它想要添加一个新的 ERC20 代币时，只需将新的合约地址添加到它的数据库即可。
 
-##其他代币标准
+## 其他代币标准
 对于像货币一样的代币来说，ERC20 代币非常酷。 但是要在我们僵尸游戏中代表僵尸就并不是特别有用。
 
 首先，僵尸不像货币可以分割 —— 我可以发给你 0.237 以太，但是转移给你 0.237 的僵尸听起来就有些搞笑。
@@ -830,9 +830,9 @@ uint random2 = uint(keccak256(now, msg.sender, randNonce)) % 100;
 >请注意，使用像 ERC721 这样的标准的优势就是，我们不必在我们的合约中实现拍卖或托管逻辑，这决定了玩家能够如何交易／出售我们的僵尸。 如果我们符合规范，其他人可以为加密可交易的 ERC721 资产搭建一个交易所平台，我们的 ERC721 僵尸将可以在该平台上使用。 所以使用代币标准相较于使用你自己的交易逻辑有明显的好处。
 
 ***
-#ERC721 标准, 多重继承
+# ERC721 标准, 多重继承
 
-##实现一个代币合约（多重继承）
+## 实现一个代币合约（多重继承）
 在实现一个代币合约的时候，我们首先要做的是将接口复制到它自己的 Solidity 文件并导入它，`import ./erc721.sol`。 接着，让我们的合约继承它，然后我们用一个函数定义来重写每个方法。
 
 但等一下——`ZombieOwnership`已经继承自`ZombieAttack`了 —— 它如何能够也继承于`ERC721`呢？
@@ -845,7 +845,7 @@ contract SatoshiNakamoto is NickSzabo, HalFinney {
 ```
 正如你所见，当使用多重继承的时候，你只需要用逗号`,`来隔开几个你想要继承的合约。在上面的例子中，我们的合约继承自`NickSzabo`和`HalFinney`。
 
-##ERC721 标准
+## ERC721 标准
 让我们来看一看 ERC721 标准：
 ```
 contract ERC721 {
@@ -866,7 +866,7 @@ contract ERC721 {
 >注意： ERC721目前是一个 草稿，还没有正式商定的实现。在本教程中，我们使用的是 OpenZeppelin 库中的当前版本，但在未来正式发布之前它可能会有更改。 所以把这 一个 可能的实现当作考虑，但不要把它作为 ERC721 代币的官方标准。
 
 ### balanceOf 和 ownerOf
-####balanceOf
+#### balanceOf
 ```
   function balanceOf(address _owner) public view returns (uint256 _balance);
 ```
@@ -874,7 +874,7 @@ contract ERC721 {
 
 在我们的例子中，我们的“代币”是僵尸。你还记得在我们 DApp 的哪里存储了一个主人拥有多少只僵尸吗？
 
-####ownerOf
+#### ownerOf
 ```
   function ownerOf(uint256 _tokenId) public view returns (address _owner);
 ```
@@ -884,7 +884,7 @@ contract ERC721 {
 
 >注意：要记得，`uint256`等同于`uint`。我们从课程的开始一直在代码中使用`uint`，但从现在开始我们将在这里用 uint256，因为我们直接从规范中复制粘贴。
 
-####ERC721: 转移标准
+#### ERC721: 转移标准
 注意 ERC721 规范有两种不同的方法来转移代币：
 ```
 function transfer(address _to, uint256 _tokenId) public;
@@ -901,7 +901,7 @@ function takeOwnership(uint256 _tokenId) public;
 
 所以我们把这个逻辑抽象成它自己的私有函数`_transfer`，然后由这两个函数来调用它。 这样我们就不用写重复的代码了。
 
-####ERC721: 批准
+#### ERC721: 批准
 现在，让我们来实现`approve`。
 
 记住，使用`approve`或者`takeOwnership`的时候，转移有2个步骤：
@@ -912,10 +912,10 @@ function takeOwnership(uint256 _tokenId) public;
 
 因为这发生在2个函数的调用中，所以在函数调用之间，我们需要一个数据结构来存储什么人被批准获取什么。
 
-####ERC721: takeOwnership
+#### ERC721: takeOwnership
 最后一个函数`takeOwnership`， 应该只是简单地检查以确保`msg.sender`已经被批准来提取这个代币或者僵尸。若确认，就调用`_transfer`；
 ***
-#预防溢出
+# 预防溢出
 恭喜你，我们完成了 ERC721 的实现。
 
 并不是很复杂，对吧？很多类似的以太坊概念，当你只听人们谈论它们的时候，会觉得很复杂。所以最简单的理解方式就是你自己来实现它。
@@ -924,7 +924,7 @@ function takeOwnership(uint256 _tokenId) public;
 
 但是为了让我们的课程不至于离题太远，所以我们只专注于一些基础实现。如果你想学习一些更深层次的实现，可以在这个教程结束后，去看看 OpenZeppelin 的 ERC721 合约。
 
-##合约安全增强: 溢出和下溢
+## 合约安全增强: 溢出和下溢
 我们将来学习你在编写智能合约的时候需要注意的一个主要的安全特性：防止溢出和下溢。
 
 什么是**溢出(overflow)**?
@@ -942,7 +942,7 @@ number++;
 
 虽然我们在这里不使用 uint8，而且每次给一个 uint256 加 1 也不太可能溢出 (2^256 真的是一个很大的数了)，在我们的合约中添加一些保护机制依然是非常有必要的，以防我们的 DApp 以后出现什么异常情况。
 
-##使用 SafeMath
+## 使用 SafeMath
 为了防止这些情况，OpenZeppelin 建立了一个叫做 SafeMath 的**库(library)**，默认情况下可以防止这些问题。
 
 不过在我们使用之前…… 什么叫做库?
@@ -959,7 +959,7 @@ uint256 c = a.mul(2); // 5 * 2 = 10
 ```
 我们将在下一章来学习这些方法，不过现在我们先将 SafeMath 库添加进我们的合约。
 
-##SafeMath 第二部分
+## SafeMath 第二部分
 来看看 SafeMath 的部分代码:
 ```
 library SafeMath {
@@ -1016,7 +1016,7 @@ function add(uint256 a, uint256 b) internal pure returns (uint256) {
 
 所以简而言之，`SafeMath`的`add`，`sub`，`mul`， 和`div`方法只做简单的四则运算，然后在发生溢出或下溢的时候抛出错误。
 
-###在我们的代码里使用 SafeMath。
+### 在我们的代码里使用 SafeMath。
 为了防止溢出和下溢，我们可以在我们的代码里找`+`，`-`，`*`，或`/`，然后替换为`add`,`sub`,`mul`,`div`.
 
 比如，与其这样做:
@@ -1028,7 +1028,7 @@ myUint++;
 myUint = myUint.add(1);
 ```
 
-##SafeMath 第三部分
+## SafeMath 第三部分
 太好了，这下我们的 ERC721 实现不会有溢出或者下溢了。
 
 回头看看我们在之前课程写的代码，还有其他几个地方也有可能导致溢出或下溢。
@@ -1060,7 +1060,7 @@ function add(uint256 a, uint256 b) internal pure returns (uint256) {
 
 现在我们需要在 ZombieFactory 里使用它们。
 ***
-#注释
+# 注释
 僵尸游戏的 Solidity 代码终于完成啦。
 
 在以后的课程中，我们将学习如何将游戏部署到以太坊，以及如何和 Web3.js 交互。
