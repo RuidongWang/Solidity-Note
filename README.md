@@ -3,6 +3,7 @@ This is the note of solidity. By RuidongWang
 #solidity笔记
 [toc]
 ****
+
 #**基本代码结构**
 
 ```
