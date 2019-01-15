@@ -4,7 +4,7 @@ This is the note of solidity. By RuidongWang
 [toc]
 ****
 
-#**基本代码结构**
+# **基本代码结构**
 
 ```
 pragma solidity ^0.4.19;//声明solidity的版本号
